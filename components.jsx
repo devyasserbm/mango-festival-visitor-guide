@@ -110,18 +110,17 @@ function Hero({ t }) {
 // ========== Quick Nav ==========
 function QuickNav({ t }) {
   const items = [
-    { href: "#about", ico: "🌿", key: "about" },
-    { href: "#map", ico: "🗺️", key: "map" },
-    { href: "#offer", ico: "🎪", key: "offer" },
-    { href: "#events", ico: "📅", key: "events" },
-    { href: "#location", ico: "📍", key: "location" },
+    { href: "#about", key: "about" },
+    { href: "#map", key: "map" },
+    { href: "#offer", key: "offer" },
+    { href: "#events", key: "events" },
+    { href: "#location", key: "location" },
   ];
   return (
     <nav className="quick-nav">
       <div className="qn-inner">
         {items.map(i => (
           <a key={i.key} className="qn" href={i.href}>
-            <span className="ico">{i.ico}</span>
             <span>{t.nav[i.key]}</span>
           </a>
         ))}
