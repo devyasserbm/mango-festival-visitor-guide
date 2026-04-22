@@ -75,7 +75,8 @@ function useActiveSection() {
 function App() {
   const [lang, setLang] = useState(() => localStorage.getItem("mf_lang") || null);
   const [tweaksOpen, setTweaksOpen] = useState(false);
-  const t = lang ? window.I18N[lang] : null;
+  const resolvedLang = lang && window.I18N[lang] ? lang : (lang ? "en" : null);
+  const t = resolvedLang ? window.I18N[resolvedLang] : null;
   useScrollReveal();
   useActiveSection();
 
@@ -95,10 +96,10 @@ function App() {
   useEffect(() => {
     if (!t) return;
     document.documentElement.setAttribute("dir", t.dir);
-    document.documentElement.setAttribute("lang", lang);
+    document.documentElement.setAttribute("lang", resolvedLang);
     document.body.style.setProperty("--font", t.font);
-    localStorage.setItem("mf_lang", lang);
-  }, [lang, t]);
+    localStorage.setItem("mf_lang", resolvedLang);
+  }, [resolvedLang, t]);
 
   // Smooth-scroll hash links that account for sticky header
   useEffect(() => {
