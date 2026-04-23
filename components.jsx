@@ -317,24 +317,11 @@ function Offer({ t }) {
 // ========== Events Timeline ==========
 function Events({ t }) {
   const [activeDay, setActiveDay] = useState(1);
-  const startDate = new Date();
   const images = [
     "uploads/event-day-1.jpeg",
     "uploads/event-day-2.jpeg",
     "uploads/event-day-3.jpeg",
   ];
-
-  const formatDate = (d) => {
-    try {
-      return new Intl.DateTimeFormat(document.documentElement.lang || "ar", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }).format(d);
-    } catch {
-      return d.toLocaleDateString();
-    }
-  };
 
   return (
     <section id="events" className="section section-alt" data-screen-label="Events">
@@ -346,16 +333,7 @@ function Events({ t }) {
         </header>
         <div className="events-ctrls">
           {t.events.list.map((event, i) => {
-            const d = new Date(startDate);
-            d.setDate(startDate.getDate() + i);
-            let dayLabel = "";
-            try {
-              dayLabel = new Intl.DateTimeFormat(document.documentElement.lang || "ar", {
-                weekday: "long",
-              }).format(d);
-            } catch {
-              dayLabel = t.events.days[i] || "";
-            }
+            const dayLabel = t.events.days[i] || "";
             const isActive = activeDay === event.day;
             return (
               <button
@@ -372,16 +350,8 @@ function Events({ t }) {
         {(() => {
           const selected = t.events.list.find(e => e.day === activeDay) || t.events.list[0];
           const selectedIndex = Math.max(0, t.events.list.findIndex(e => e.day === selected.day));
-          const d = new Date(startDate);
-          d.setDate(startDate.getDate() + selectedIndex);
-          let dayLabel = "";
-          try {
-            dayLabel = new Intl.DateTimeFormat(document.documentElement.lang || "ar", {
-              weekday: "long",
-            }).format(d);
-          } catch {
-            dayLabel = t.events.days[selectedIndex] || "";
-          }
+          const dayLabel = t.events.days[selectedIndex] || "";
+          const thuImage = "uploads/event-day-4-thu.jpeg";
 
           const wedGallery = [
             "uploads/wed-extra1.jpeg",
@@ -392,14 +362,14 @@ function Events({ t }) {
             return (
               <div className="events-cards wed-cards-list">
                 {wedGallery.map((src, gi) => (
-                  <article className="event-day-card reveal" key={gi}>
+                  <article className="event-day-card" key={gi}>
                     <div className="wed-single-img">
                       <img src={src} alt={selected.title + " " + (gi+1)} loading="lazy"/>
                     </div>
                     {gi === 0 && (
                       <div className="event-day-body">
                         <h3>{selected.title}</h3>
-                        <div className="event-date-line">{formatDate(d)}</div>
+                        <div className="event-date-line">{selected.date}</div>
                         <p className="event-desc">{selected.desc}</p>
                         <div className="meta">
                           <span>{selected.time}</span>
@@ -413,16 +383,43 @@ function Events({ t }) {
             );
           }
 
+          if (selected.day === 2) {
+            return (
+              <div className="events-cards">
+                <article className="event-day-card" key={selected.day}>
+                  <div className="event-day-image">
+                    <img src={thuImage} alt={selected.title} loading="lazy"/>
+                    <span className="event-day-badge">{dayLabel}</span>
+                  </div>
+                  <div className="event-day-body">
+                    <h3>{selected.title}</h3>
+                    <div className="event-date-line">{selected.date}</div>
+                    <p className="event-desc">{selected.desc}</p>
+                    <div className="meta">
+                      <span>{selected.time}</span>
+                      <span>{selected.place}</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            );
+          }
+
+          // Keep Friday without details.
+          if (selected.day === 3) {
+            return null;
+          }
+
           return (
             <div className="events-cards">
-              <article className="event-day-card reveal" key={selected.day}>
+              <article className="event-day-card" key={selected.day}>
                 <div className="event-day-image">
                   <img src={images[selectedIndex] || images[0]} alt={selected.title} loading="lazy"/>
                   <span className="event-day-badge">{dayLabel}</span>
                 </div>
                 <div className="event-day-body">
                   <h3>{selected.title}</h3>
-                  <div className="event-date-line">{formatDate(d)}</div>
+                  <div className="event-date-line">{selected.date}</div>
                   <p className="event-desc">{selected.desc}</p>
                   <div className="meta">
                     <span>{selected.time}</span>

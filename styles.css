@@ -571,12 +571,13 @@ a { color: inherit; text-decoration: none; }
 }
 .event-day-image {
   position: relative;
-  height: 150px;
+  background: #0f0f0f;
 }
 .event-day-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 .wed-cards-list {
   display: flex;
@@ -927,7 +928,6 @@ a { color: inherit; text-decoration: none; }
   .offer-grid { grid-template-columns: 1fr; }
   .offer-grid.offer-grid-compact { grid-template-columns: 1fr; }
   .events-cards { grid-template-columns: 1fr; max-width: 100%; }
-  .event-day-image { height: 130px; }
   .event-mini-card img { height: 74px; }
   .offer-card.featured {
     grid-column: span 1;

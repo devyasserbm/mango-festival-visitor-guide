@@ -116,7 +116,7 @@ window.I18N = {
     events: {
       eyebrow: "الفعاليات وأيامها ومواعيدها",
       title: "جدول الفعاليات",
-      sub: "ثلاثة أيام تبدأ من اليوم",
+      sub: "ثلاثة أيام تبدأ من الأربعاء",
       days: ["الأربعاء", "الخميس", "الجمعة"],
       list: [
         {
@@ -293,7 +293,7 @@ window.I18N = {
     events: {
       eyebrow: "Events, Days and Times",
       title: "Event Schedule",
-      sub: "Three days starting today",
+      sub: "Three days starting Wednesday",
       days: ["Wed", "Thu", "Fri"],
       list: [
         {
@@ -470,7 +470,7 @@ window.I18N = {
     events: {
       eyebrow: "تقریبات، دن اور اوقات",
       title: "تقریبات کا شیڈول",
-      sub: "آج سے شروع ہونے والے تین دن",
+      sub: "تین دن بدھ سے شروع ہوتے ہیں",
       days: ["بدھ", "جمعرات", "جمعہ"],
       list: [
         {
@@ -647,7 +647,7 @@ window.I18N = {
     events: {
       eyebrow: "दिन और समय",
       title: "कार्यक्रम तालिका",
-      sub: "आज से शुरू होने वाले 3 दिन",
+      sub: "3 दिन बुधवार से शुरू",
       days: ["बुध", "गुरु", "शुक्र"],
       list: [
         {
