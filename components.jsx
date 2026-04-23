@@ -66,6 +66,15 @@ function Header({ t, onChangeLang }) {
 
 // ========== Hero with video ==========
 function Hero({ t }) {
+  const scrollToSection = (id, e) => {
+    if (e) e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 110;
+    window.scrollTo({ top, behavior: "smooth" });
+    history.replaceState(null, "", "#" + id);
+  };
+
   return (
     <section className="hero" data-screen-label="Hero">
       <video className="hero-video"
@@ -96,8 +105,8 @@ function Hero({ t }) {
           </span>
         </div>
         <div className="hero-ctas">
-          <a className="btn btn-primary" href="#about">{t.hero.cta_about}</a>
-          <a className="btn btn-ghost" href="#events">{t.hero.cta_events}</a>
+          <a className="btn btn-primary" href="#about" onClick={(e) => scrollToSection("about", e)}>{t.hero.cta_about}</a>
+          <a className="btn btn-ghost" href="#events" onClick={(e) => scrollToSection("events", e)}>{t.hero.cta_events}</a>
         </div>
       </div>
     </section>
