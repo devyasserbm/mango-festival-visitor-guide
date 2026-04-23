@@ -66,8 +66,7 @@ function Header({ t, onChangeLang }) {
 
 // ========== Hero with video ==========
 function Hero({ t }) {
-  const scrollToSection = (id, e) => {
-    if (e) e.preventDefault();
+  const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (!el) return;
     const top = el.getBoundingClientRect().top + window.scrollY - 110;
@@ -105,8 +104,8 @@ function Hero({ t }) {
           </span>
         </div>
         <div className="hero-ctas">
-          <a className="btn btn-primary" href="#about" onClick={(e) => scrollToSection("about", e)}>{t.hero.cta_about}</a>
-          <a className="btn btn-ghost" href="#events" onClick={(e) => scrollToSection("events", e)}>{t.hero.cta_events}</a>
+          <button type="button" className="btn btn-primary" onClick={() => scrollToSection("about")}>{t.hero.cta_about}</button>
+          <button type="button" className="btn btn-ghost" onClick={() => scrollToSection("events")}>{t.hero.cta_events}</button>
         </div>
       </div>
     </section>
