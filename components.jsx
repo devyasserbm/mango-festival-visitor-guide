@@ -360,6 +360,7 @@ function Events({ t }) {
           const selectedIndex = Math.max(0, t.events.list.findIndex(e => e.day === selected.day));
           const dayLabel = t.events.days[selectedIndex] || "";
           const thuImage = "uploads/event-day-4-thu.jpeg";
+          const friImage = "uploads/event-day-5-fri.jpeg";
 
           const wedGallery = [
             "uploads/wed-extra1.jpeg",
@@ -413,9 +414,17 @@ function Events({ t }) {
             );
           }
 
-          // Keep Friday without details.
           if (selected.day === 3) {
-            return null;
+            return (
+              <div className="events-cards">
+                <article className="event-day-card" key={selected.day}>
+                  <div className="event-day-image">
+                    <img src={friImage} alt={selected.title} loading="lazy"/>
+                    <span className="event-day-badge">{dayLabel}</span>
+                  </div>
+                </article>
+              </div>
+            );
           }
 
           return (
