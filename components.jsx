@@ -324,7 +324,7 @@ function Offer({ t }) {
 
 // ========== Events Timeline ==========
 function Events({ t }) {
-  const [activeDay, setActiveDay] = useState(2);
+  const [activeDay, setActiveDay] = useState(3);
   const images = [
     "uploads/event-day-1.jpeg",
     "uploads/event-day-2.jpeg",
